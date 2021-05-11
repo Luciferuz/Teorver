@@ -1,8 +1,7 @@
-import org.junit.Test;
-
-import java.lang.reflect.Array;
-import java.math.BigInteger;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 class mainTest {
     @org.junit.jupiter.api.Test
@@ -62,25 +61,24 @@ class mainTest {
 //            if (x3 < 4 && x4 < 3) prob2++;
 
 
-            while (true) {
-                for (int i = 0; i < tests; i++) {
-                    if (Math.random() < p1) {
-                        if (Math.random() < find) prob++;
-                    }
+        while (true) {
+            for (int i = 0; i < tests; i++) {
+                if (Math.random() < p1) {
+                    if (Math.random() < find) prob++;
                 }
-                if (prob / tests < 0.9) break;
-                prob = 0;
-                find = find + 0.001;
-                System.out.println(prob / tests);
             }
-
+            if (prob / tests < 0.9) break;
+            prob = 0;
+            find = find + 0.001;
+            System.out.println(prob / tests);
+        }
 
 
         //}
 
         System.out.println("Аналитическое а = " + analytically1);
         System.out.println("Моделирование а = " + find);
-       // System.out.println("Аналитическое б = " + analytically2);
+        // System.out.println("Аналитическое б = " + analytically2);
         //System.out.println("Моделирование б = " + prob2 / tests);
     }
 
@@ -158,11 +156,11 @@ class mainTest {
                 .toArray();
         System.out.println("unsorted " + Arrays.toString(answers)); //вывод массива на экран (неотсортированного)
         System.out.println("sorted   " + Arrays.toString(tempArr)); //вывод массива на экран (отсортированного)
-        System.out.println("бракованных изделий 1 = " + answers[0]/tests);
-        System.out.println("бракованных изделий 2 = " + answers[1]/tests);
-        System.out.println("бракованных изделий 3 = " + answers[2]/tests);
-        System.out.println("бракованных изделий 4 = " + answers[3]/tests);
-        System.out.println("бракованных изделий 5 = " + answers[4]/tests);
+        System.out.println("бракованных изделий 1 = " + answers[0] / tests);
+        System.out.println("бракованных изделий 2 = " + answers[1] / tests);
+        System.out.println("бракованных изделий 3 = " + answers[2] / tests);
+        System.out.println("бракованных изделий 4 = " + answers[3] / tests);
+        System.out.println("бракованных изделий 5 = " + answers[4] / tests);
         int max = tempArr[0]; //максимальный элемент
         for (int i = 1; i <= 5; i++) { //ищем индекс, соответствующий этому элементу в неотсортированном массиве
             if (answers[i - 1] == max) answer = i;
@@ -202,7 +200,7 @@ class mainTest {
         double tests = 50000000;
         double prob1 = 0;
         double prob2 = 0;
-        List<Integer> goodSeating = List.of(0,1,2,2,3,4);
+        List<Integer> goodSeating = List.of(0, 1, 2, 2, 3, 4);
         // аналитические значения вычислил с помощью WolframAlpha
         double analytically1 = 0.00343828589;
         double analytically2 = 0.13753143575;
@@ -218,17 +216,23 @@ class mainTest {
             for (int man = 0; man < 12; man++) {
                 int randomNumber = 1 + (int) (Math.random() * 6);
                 switch (randomNumber) {
-                    case 1 : carriage1++;
+                    case 1:
+                        carriage1++;
                         break;
-                    case 2 : carriage2++;
+                    case 2:
+                        carriage2++;
                         break;
-                    case 3 : carriage3++;
+                    case 3:
+                        carriage3++;
                         break;
-                    case 4 : carriage4++;
+                    case 4:
+                        carriage4++;
                         break;
-                    case 5 : carriage5++;
+                    case 5:
+                        carriage5++;
                         break;
-                    case 6 : carriage6++;
+                    case 6:
+                        carriage6++;
                         break;
                 }
             }
@@ -261,7 +265,7 @@ class mainTest {
         double tests = 10000000;
         double prob = 0;
         double analytically = 5.0 / 14.0;
-        List<Integer> numbers = List.of(2,4,6,7,8,11,12,13);
+        List<Integer> numbers = List.of(2, 4, 6, 7, 8, 11, 12, 13);
 
         for (int i = 0; i < tests; i++) {
             ArrayList<Integer> array = new ArrayList<>(numbers);
@@ -305,7 +309,8 @@ class mainTest {
                     break;
                 } else { //теперь берет второй если первый не достал белый
                     random = (int) (Math.random() * (m + n));
-                    if (balls.get(random) == 1) break; //если он вытянул белый, то неудачный исход, а если не вытянул белый (вытянул черный - продолжаем брать шары)
+                    if (balls.get(random) == 1)
+                        break; //если он вытянул белый, то неудачный исход, а если не вытянул белый (вытянул черный - продолжаем брать шары)
                 }
             }
         }
@@ -400,7 +405,7 @@ class mainTest {
         }
 
         System.out.println("Аналитическое = " + analytically);
-        System.out.println("Моделирование = " + prob/tests);
+        System.out.println("Моделирование = " + prob / tests);
     }
 
     @org.junit.jupiter.api.Test
@@ -409,11 +414,11 @@ class mainTest {
         double anal = 0.05;
         int prob = 0;
         System.out.println("Аналитическое = " + anal);
-        System.out.println("Моделирование = " + prob/tests);
+        System.out.println("Моделирование = " + prob / tests);
     }
 
     @org.junit.jupiter.api.Test
-    public void task_danya_4_14(){
+    public void task_danya_4_14() {
         double tests = 10000000;
         double analytically = 0.7 * 0.7 * (1 - 0.6 * 0.6);
         int prob = 0;
@@ -431,7 +436,7 @@ class mainTest {
 
         }
         System.out.println("Аналитическое = " + analytically);
-        System.out.println("Моделирование = " + prob/tests);
+        System.out.println("Моделирование = " + prob / tests);
     }
 
     @org.junit.jupiter.api.Test
