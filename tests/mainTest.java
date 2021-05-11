@@ -84,7 +84,6 @@ class mainTest {
         //System.out.println("Моделирование б = " + prob2 / tests);
     }
 
-
     @org.junit.jupiter.api.Test
     public void task_5_4() {
         double tests = 100000000;
@@ -314,7 +313,6 @@ class mainTest {
         System.out.println("Моделирование = " + prob / tests);
     }
 
-
     @org.junit.jupiter.api.Test
     public void task_katya_6_14() {
         double tests = 10000000;
@@ -412,6 +410,55 @@ class mainTest {
         int prob = 0;
         System.out.println("Аналитическое = " + anal);
         System.out.println("Моделирование = " + prob/tests);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void task_danya_4_14(){
+        double tests = 10000000;
+        double analytically = 0.7 * 0.7 * (1 - 0.6 * 0.6);
+        int prob = 0;
+
+        for (int i = 0; i < tests; i++) {
+            double random1 = (Math.random()); //вероятность выигрыша для второго
+            double random2 = (Math.random()); //вероятность выигрыша для третьего
+            if (random1 < 0.3 || random2 < 0.3) { //если первый не проиграл, то ходит на второго и третьего
+                double random3 = (Math.random()); //выиграл ли у второго
+                double random4 = (Math.random()); //выиграл ли у третьего
+                if (random3 < 0.4 || random4 < 0.4) {
+                    prob++;
+                }
+            }
+
+        }
+        System.out.println("Аналитическое = " + analytically);
+        System.out.println("Моделирование = " + prob/tests);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void task_danya_8_31() {
+        double tests = 1000000;
+        int analytically = 5;
+        int prob = 0;
+        int find = 0; //принимаем, что изначально число каналов = 0, потом будем постепенно увеличивать это количество
+        int counter; //счетчик, какому количеству абонентов потребовалась линия связи
+
+        while (true) { //пока не достигнем вероятности 0.99, ищем минимальное число каналов
+            for (int i = 0; i < tests; i++) {
+                counter = 0;
+                for (int z = 1; z <= 10; z++) { //проходимся по 10 абонентам и считаем, скольким нужна линия
+                    if (Math.random() < 0.2) counter++;
+                }
+                //если это количество абонентов меньше или равно числу каналов связи, то благоприятный исход
+                if (counter <= find) prob++;
+            }
+            if (prob / tests >= 0.99) break; //если достигли нужной вероятности, выводим ответ
+            //иначе - обнуляем prob и увеличиваем число каналов на единицу
+            prob = 0;
+            find++;
+        }
+
+        System.out.println("Аналитическое = " + analytically);
+        System.out.println("Моделирование = " + find);
     }
 
 
