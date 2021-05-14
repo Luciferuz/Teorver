@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 class mainTest {
-    @org.junit.jupiter.api.Test
 
+    @org.junit.jupiter.api.Test
     public void task_2_29() {
         double n = 11;
         double m = 3;
@@ -466,5 +466,22 @@ class mainTest {
         System.out.println("Моделирование = " + find);
     }
 
+    @org.junit.jupiter.api.Test
+    public void task_danya_5_1() {
+        double tests = 10000000;
+        double analytically = 0.03;
+        double prob = 0;
+
+        for (int i = 0; i < tests; i++) {
+            double p1 = Math.random();
+            double p2 = Math.random();
+            double p3 = Math.random();
+            double p4 = Math.random();
+            if (p1 <= 0.012 || p2 <= 0.010 || p3 <= 0.006 || p4 <= 0.002) prob++;
+        }
+
+        System.out.println("Аналитическое = " + analytically);
+        System.out.println("Моделирование = " + prob / tests);
+    }
 
 }

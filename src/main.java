@@ -1,6 +1,6 @@
 public class main {
 
-    public void main() {
+    public static void main() {
         int m = 5;
         int n = 3;
         int k = 3;
