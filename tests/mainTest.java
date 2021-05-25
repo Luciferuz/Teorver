@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 class mainTest {
 
@@ -484,4 +481,95 @@ class mainTest {
         System.out.println("Моделирование = " + prob / tests);
     }
 
+    @org.junit.jupiter.api.Test
+    public void task_artem_2_5() {
+        double tests = 10000000;
+        double analytically = 23.0/240.0;
+        double prob = 0;
+
+        for (int x = 0; x < tests; x++) {
+            int xBlack = (int) (Math.random() * 8) + 1;
+            boolean yBlackFirst = Math.random() >= 0.5;
+            int xQueen = (int) (Math.random() * 8) + 1;
+            boolean yQueenFirst =  Math.random() >=0.5;
+
+            if (yBlackFirst && !yQueenFirst) {
+                if (xBlack == xQueen) {
+                    prob++;
+                    continue;
+                }
+                if (xBlack + 1 == xQueen) {
+                    prob++;
+                    continue;
+                }
+            }
+
+            if (yQueenFirst && yBlackFirst) {
+                prob++;
+                continue;
+            }
+
+            if (!yQueenFirst && !yBlackFirst) {
+                if (xBlack == xQueen) {
+                    prob++;
+                    continue;
+                }
+                if (x == xQueen + 1) {
+                    prob++;
+                    continue;
+                }
+            }
+
+            if (!yBlackFirst && yQueenFirst) {
+                if (xBlack == xQueen) {
+                    prob++;
+                    continue;
+                }
+                if (xBlack +2 == xQueen || xBlack - 2 == xQueen || xQueen + 2 == xBlack || xQueen - 2 == xBlack) {
+                    prob++;
+                }
+            }
+        }
+
+
+        System.out.println("Аналитическое = " + analytically);
+        System.out.println("Моделирование = " + prob / tests);
+    }
+
+
+    @org.junit.jupiter.api.Test
+    public void task_artem_2_5_edited() {
+        double tests = 10000000;
+        double analytically = 23.0/240.0;
+        double prob = 0;
+
+        for (int x = 0; x < tests; x++) {
+            int xBlack = (int) (Math.random() * 8) + 1;
+            int xQueen = (int) (Math.random() * 8) + 1;
+            boolean yBlackFirst = Math.random() >= 0.5;
+            boolean yQueenFirst =  Math.random() >=0.5;
+            boolean isAnotherNear =  Math.random() >= 0.5;
+
+            if (yBlackFirst && !yQueenFirst) {
+                if (xBlack == xQueen) {
+                    prob++;
+                    continue;
+                }
+            }
+
+            if (yQueenFirst && yBlackFirst && (xBlack + 2 == xQueen || xBlack - 2 == xQueen)) {
+                prob++;
+                continue;
+            }
+
+            if (!yQueenFirst && !yBlackFirst && isAnotherNear) {
+                if (xBlack == xQueen) {
+                    prob++;
+                }
+            }
+
+        }
+        System.out.println("Аналитическое = " + analytically);
+        System.out.println("Моделирование = " + prob / tests);
+    }
 }
